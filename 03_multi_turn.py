@@ -32,7 +32,7 @@ while True:
         messages=history
     )
 
-    assistant_reply = response.content[0].text
+    assistant_reply = next(b.text for b in response.content if b.type == "text")
     print(f"\n助手: {assistant_reply}\n")
 
     history.append({"role": "assistant", "content": assistant_reply})
